@@ -1,0 +1,9 @@
+@import './base.css';
+@import "tailwindcss";
+@import "./scss/fonts.css";
+@import "./scss/base.scss";
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+}
+

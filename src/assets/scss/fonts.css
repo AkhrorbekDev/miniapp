@@ -1,0 +1,224 @@
+/* Stapel Font Family */
+
+/* Regular Stapel */
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Bold Italic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Light Italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Thin Italic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel';
+  src: url('./stapel/Stapel_Medium Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Condensed Stapel */
+@font-face {
+  font-family: 'Stapel Condensed';
+  src: url('./stapel/Stapel_Condensed Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Condensed';
+  src: url('./stapel/Stapel_Condensed Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Stapel Condensed';
+  src: url('./stapel/Stapel_Condensed Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Condensed';
+  src: url('./stapel/Stapel_Condensed Bold Italic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Narrow Stapel */
+@font-face {
+  font-family: 'Stapel Narrow';
+  src: url('./stapel/Stapel_Narrow Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Narrow';
+  src: url('./stapel/Stapel_Narrow Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Stapel Narrow';
+  src: url('./stapel/Stapel_Narrow Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Narrow';
+  src: url('./stapel/Stapel_Narrow Bold Italic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Semi Expanded Stapel */
+@font-face {
+  font-family: 'Stapel Semi Expanded';
+  src: url('./stapel/Stapel_Semi Expanded Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Semi Expanded';
+  src: url('./stapel/Stapel_Semi Expanded Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Semi Expanded';
+  src: url('./stapel/Stapel_Semi Expanded Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* Expanded Stapel */
+@font-face {
+  font-family: 'Stapel Expanded';
+  src: url('./stapel/Stapel_Expanded Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Expanded';
+  src: url('./stapel/Stapel_Expanded Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* Text Stapel */
+@font-face {
+  font-family: 'Stapel Text';
+  src: url('./stapel/Stapel_Text Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Text';
+  src: url('./stapel/Stapel_Text Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Stapel Text';
+  src: url('./stapel/Stapel_Text Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Text';
+  src: url('./stapel/Stapel_Text Bold Italic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Stapel Text';
+  src: url('./stapel/Stapel_Text Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Text';
+  src: url('./stapel/Stapel_Text Light Italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Stapel Text';
+  src: url('./stapel/Stapel_Text Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stapel Text';
+  src: url('./stapel/Stapel_Text Medium Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}

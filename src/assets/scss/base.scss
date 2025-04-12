@@ -1,0 +1,18 @@
+
+.calendar-icon {
+  &.yellow {
+    box-shadow: 0px 0px 20px #F3BE5C;
+  }
+
+  &.blue {
+    box-shadow: 0px 0px 20px #55ADFF;
+  }
+
+  &.purple {
+    box-shadow: 0px 0px 20px #9C55FF;
+  }
+
+  &.red {
+    box-shadow: 0px 0px 20px #FF5566;
+  }
+}
