@@ -7,11 +7,14 @@
   <div class="sticky bottom-0 left-0 right-0   p-3 z-10">
     <div
       class="flex justify-between border border-[#333333] rounded-[13px] bg-[#1a1a1a] px-[17px] bottom-navs py-[12px] items-end">
-      <router-link :to="{name: 'mining'}"
-                   class="w-[57px] h-[57px]  rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
-        <div :class="{
+
+      <router-link :to="{
+        name: 'mining',
+      }" :class="{
           '_active': $route.name === 'mining',
-       }" class="rounded-lg mb-[7px]">
+       }"
+                   class="w-[57px] h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
+        <div class="rounded-lg mb-[7px]">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <path
@@ -26,12 +29,9 @@
               </radialGradient>
             </defs>
           </svg>
-
         </div>
-
-        <span class="text-[10px] text-[#ffffff]">Майнинг</span>
+        <span class="text-[10px] text-[#ffffff]">mining</span>
       </router-link>
-
       <router-link :to="{
         name: 'friends',
       }" :class="{
@@ -60,12 +60,14 @@
         </div>
       </router-link>
 
-      <router-link
-        :to="{ name: 'shop'}"
-        class="w-[57px] h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
-        <div :class="{
+
+      <router-link :to="{
+        name: 'shop',
+      }" :class="{
           '_active': $route.name === 'shop',
-       }" class="rounded-lg mb-[7px]">
+       }"
+                   class="w-[57px] h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
+        <div class="rounded-lg mb-[7px]">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <path
@@ -80,22 +82,22 @@
               </radialGradient>
             </defs>
           </svg>
-        </div>
 
-        <span class="text-[10px] text-[#ffffff]">Магазин</span>
+        </div>
+        <span class="text-[10px] text-[#ffffff]">Друзья</span>
       </router-link>
 
       <router-link :to="{
-        name: 'airdrops'
-      }"
-                   class="w-[57px] h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center relative">
+        name: 'airdrops',
+      }" :class="{
+          '_active': $route.name === 'airdrops',
+       }"
+                   class="w-[57px] relative h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
         <div
           class="absolute top-[-21px] left-0 right-0 bg-[#ff282c] text-[9px] text-[normal] px-[4px] py-[2px] text-white text-center rounded-md font-mono">
           10:24:46
         </div>
-        <div :class="{
-          '_active': $route.name === 'airdrops',
-       }" class="rounded-lg mb-[7px]">
+        <div class="rounded-lg mb-[7px]">
           <svg width="28" height="24" viewBox="0 0 28 24" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -110,9 +112,10 @@
               </radialGradient>
             </defs>
           </svg>
-        </div>
 
-        <span class="text-[10px] text-[#ffffff] ">Эйрдроп</span>
+
+        </div>
+        <span class="text-[10px] text-[#ffffff]">Эйрдроп</span>
       </router-link>
     </div>
   </div>
