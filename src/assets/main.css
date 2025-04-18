@@ -5,5 +5,7 @@
 #app {
   margin: 0 auto;
   font-weight: normal;
+  background: url('./iPhone 16 - 12.png') no-repeat center;
+  background-size: cover;
 }
 

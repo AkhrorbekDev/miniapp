@@ -1,12 +1,26 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { MainButton, useWebAppPopup } from 'vue-tg'
+import BottomNav from "@/components/BottomNav.vue";
+
+const { showAlert } = useWebAppPopup()
 </script>
 
 <template>
-  <RouterView />
+
+  <div class="main w-full ">
+    <RouterView />
+
+  </div>
+
+
 </template>
 
 <style scoped>
+.main {
+
+  flex-grow: 1;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;

@@ -17,27 +17,32 @@
 
       <div class=" !px-[16px]">
         <div class="content-types">
-          <button @click="activeTabIndex = 1" :class="{_active: activeTabIndex === 1}"
+          <button @click="changeActiveTab(1, $event)" :class="{_active: activeTabIndex === 1}"
                   class=" content-types__type flex-1 rounded-full text-white font-medium">
             Топ по майнингу
           </button>
-          <button @click="activeTabIndex = 2" :class="{_active: activeTabIndex === 2}"
+          <button @click="changeActiveTab(2, $event)" :class="{_active: activeTabIndex === 2}"
                   class=" content-types__type flex-1 text-white font-medium">
             Топ по  урону
           </button>
+          <div class="active-tab-bg" ref="activeTabBg">
+
+          </div>
         </div>
       </div>
 
       <!-- Friends list -->
-      <div class=" flex flex-col gap-[5px]  !px-[16px]">
-        <template v-if="activeTabIndex === 1">
-          <template v-for="i in 10" :key="i">
-            <div
-              class="flex items-center justify-between p-4 bg-[#1a1a1a] rounded-xl border border-[#333333]">
-              <div class="flex items-center gap-4">
-                <div class="flex items-center gap-[11px]">
-                  <div class="w-10 h-10 flex items-center justify-center">
-                    <div class="rating" :class="{
+      <div class=" flex flex-col !gap-[5px]  !px-[16px]">
+        <transition name="fade" mode="out-in">
+          <div :key="activeTabIndex">
+            <div v-if="activeTabIndex === 1">
+              <template v-for="i in 10" :key="i">
+                <div
+                  class="flex items-center justify-between p-4 bg-[#1a1a1a] rounded-xl border border-[#333333]">
+                  <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-[11px]">
+                      <div class="w-10 h-10 flex items-center justify-center">
+                        <div class="rating" :class="{
                   '_first-tab': i === 1,
                   '_second-tab': i === 2,
                   '_third-tab': i === 3,
@@ -46,34 +51,33 @@
                   <span>
                     {{ i }}
                   </span>
+                        </div>
+                      </div>
+                      <div class="flex flex-col text-start">
+                        <div class="text-[14px] font-[400] text-[#FFFFFF]">Имя</div>
+                        <div class="text-[13px] font-[400] text-[#FFFFFF]"><span class="text-[#F3BE5C]">173</span>
+                          Уровень
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="flex flex-col text-start">
-                    <div class="text-[14px] font-[400] text-[#FFFFFF]">Имя</div>
-                    <div class="text-[13px] font-[400] text-[#FFFFFF]"><span class="text-[#F3BE5C]">173</span>
-                      Уровень
-                    </div>
+                  <div class="text-right">
+                    <p class="text-[11px] text-[#fff]">Кол-во тапов</p>
+                    <p class="text-[11px]"><span class="text-[#9d56f4] font-bold">345</span><span
+                      class="text-[#7A7A7A]">кк</span>
+                    </p>
                   </div>
                 </div>
-              </div>
-              <div class="text-right">
-                <p class="text-[11px] text-[#fff]">Кол-во тапов</p>
-                <p class="text-[11px]"><span class="text-[#9d56f4] font-bold">345</span><span
-                  class="text-[#7A7A7A]">кк</span>
-                </p>
-              </div>
+              </template>
             </div>
-          </template>
-        </template>
-
-        <template v-if="activeTabIndex === 2">
-          <template v-for="i in 10" :key="i">
-            <div
-              class="flex items-center justify-between p-4 bg-[#1a1a1a] rounded-xl border border-[#333333]">
-              <div class="flex items-center gap-4">
-                <div class="flex items-center gap-[11px]">
-                  <div class="w-10 h-10 flex items-center justify-center">
-                    <div class="rating" :class="{
+            <div v-else-if="activeTabIndex === 2">
+              <template v-for="i in 10" :key="i">
+                <div
+                  class="flex items-center justify-between p-4 bg-[#1a1a1a] rounded-xl border border-[#333333]">
+                  <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-[11px]">
+                      <div class="w-10 h-10 flex items-center justify-center">
+                        <div class="rating" :class="{
                   '_first-tab': i === 1,
                   '_second-tab': i === 2,
                   '_third-tab': i === 3,
@@ -82,25 +86,28 @@
                   <span>
                     {{ i }}
                   </span>
+                        </div>
+                      </div>
+                      <div class="flex flex-col text-start">
+                        <div class="text-[14px] font-[400] text-[#FFFFFF]">Имя</div>
+                        <div class="text-[13px] font-[400] text-[#FFFFFF]"><span class="text-[#F3BE5C]">173</span>
+                          Уровень
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="flex flex-col text-start">
-                    <div class="text-[14px] font-[400] text-[#FFFFFF]">Имя</div>
-                    <div class="text-[13px] font-[400] text-[#FFFFFF]"><span class="text-[#F3BE5C]">173</span>
-                      Уровень
-                    </div>
+                  <div class="text-right">
+                    <p class="text-[11px] text-[#fff]">% владения</p>
+                    <p class="text-[11px]"><span class="text-[#DCFF61] font-bold">34%</span> <span
+                      class="text-[#7A7A7A]">/ 958ккк урона</span>
+                    </p>
                   </div>
                 </div>
-              </div>
-              <div class="text-right">
-                <p class="text-[11px] text-[#fff]">% владения</p>
-                <p class="text-[11px]"><span class="text-[#DCFF61] font-bold">34%</span> <span
-                  class="text-[#7A7A7A]">/ 958ккк урона</span>
-                </p>
-              </div>
+              </template>
+
             </div>
-          </template>
-        </template>
+          </div>
+        </transition>
       </div>
 
       <BottomNav/>
@@ -113,9 +120,10 @@
 
 <script setup>
 // You can add reactive data and methods here
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import BottomNav from "@/components/BottomNav.vue";
-import FriendsHeader from "@/components/FriendsHeader.vue";
+
+const activeTabBg = ref(null)
 
 const friends = ref([
   {id: 1, name: 'Fedotov', level: 173, mining: 345},
@@ -132,6 +140,31 @@ const friends = ref([
 
 const activeTab = ref('top10')
 const activeTabIndex = ref(1)
+const changeActiveTab  = (index, e) => {
+  activeTabIndex.value = index
+  const activeTab = document.querySelectorAll('.content-types__type')[index - 1]
+  const activeTabWidth = activeTab.offsetWidth
+  const activeTabLeft = activeTab.offsetLeft
+  const activeTabTop = activeTab.offsetTop
+  const activeTabHeight = activeTab.offsetHeight
+
+  activeTabBg.value.style.width = `${activeTabWidth}px`
+  activeTabBg.value.style.left = `${activeTabLeft}px`
+  activeTabBg.value.style.top = `${activeTabTop}px`
+  activeTabBg.value.style.height = `${activeTabHeight}px`
+}
+onMounted(() => {
+  const activeTab = document.querySelector('.content-types__type._active')
+  const activeTabWidth = activeTab.offsetWidth
+  const activeTabLeft = activeTab.offsetLeft
+  const activeTabTop = activeTab.offsetTop
+  const activeTabHeight = activeTab.offsetHeight
+
+  activeTabBg.value.style.width = `${activeTabWidth}px`
+  activeTabBg.value.style.left = `${activeTabLeft}px`
+  activeTabBg.value.style.top = `${activeTabTop}px`
+  activeTabBg.value.style.height = `${activeTabHeight}px`
+})
 </script>
 
 <style scoped lang="scss">
@@ -178,15 +211,26 @@ body {
     font-size: 12px;
     line-height: 100%;
     letter-spacing: 0%;
+    position: relative;
+    z-index: 2;
 
-
-    &._active {
+    &._active2 {
       border: 1px solid rgba(197, 158, 245, 1);
       box-shadow: 0px 4px 13.9px 0px #FFFFFF40 inset, 0px 4px 29.2px 0px #9D56F44F;
 
       background: linear-gradient(180deg, #9D56F4 0%, #5B328E 100%);
     }
   }
+}
+.active-tab-bg {
+  position: absolute;
+  border: 1px solid rgba(197, 158, 245, 1);
+  box-shadow: 0px 4px 13.9px 0px #FFFFFF40 inset, 0px 4px 29.2px 0px #9D56F44F;
+  border-radius: 9px;
+
+  background: linear-gradient(180deg, #9D56F4 0%, #5B328E 100%);
+  z-index: 1;
+  transition: all 0.3s ease;
 }
 
 .rating {
@@ -221,5 +265,12 @@ body {
   height: 191px;
   background: url("@/assets/Mask group.png") no-repeat center;
   background-size: contain;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>

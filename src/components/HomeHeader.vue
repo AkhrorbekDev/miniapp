@@ -108,7 +108,7 @@ import LoaderBar from "@/components/LoaderBar.vue";
   width: 64px;
   height: 28px;
   border-radius: 6px;
-  border: 1px solid #889C45;
+  border: 1px solid #D1E297;
 
   box-shadow: 0px 4px 13.9px 0px #FFFFFF40 inset, 0px 4px 29.2px 0px #ADCA474F;
 

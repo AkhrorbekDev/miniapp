@@ -1,5 +1,66 @@
 <script setup lang="ts">
+import {onMounted, onUnmounted, ref} from "vue";
 
+const activeTabBg = ref(null)
+const changeActiveTab = (index, e) => {
+  if (index === 0) {
+    activeTabBg.value.classList.add('_hide')
+    return
+  } else {
+    activeTabBg.value.classList.remove('_hide')
+  }
+  const activeTab = document.querySelectorAll('.navbar-link')[index - 1]
+  const activeTabWidth = activeTab.offsetWidth
+  const activeTabLeft = activeTab.offsetLeft
+  const activeTabTop = activeTab.offsetTop
+  const activeTabHeight = activeTab.offsetHeight
+
+  activeTabBg.value.style.width = `${activeTabWidth}px`
+  activeTabBg.value.style.left = `${activeTabLeft}px`
+  activeTabBg.value.style.top = `${activeTabTop}px`
+  activeTabBg.value.style.height = `${activeTabHeight}px`
+}
+let timeoutId = ref(null)
+onMounted(() => {
+  timeoutId = setTimeout(() => {
+    const activeTab = document.querySelector('.router-link-active')
+    console.log(activeTab)
+    if (!activeTab) return
+    const activeTabWidth = activeTab.offsetWidth
+    const activeTabLeft = activeTab.offsetLeft
+    const activeTabTop = activeTab.offsetTop
+    const activeTabHeight = activeTab.offsetHeight
+
+    activeTabBg.value.style.width = `${activeTabWidth}px`
+    activeTabBg.value.style.left = `${activeTabLeft}px`
+    activeTabBg.value.style.top = `${activeTabTop}px`
+    activeTabBg.value.style.height = `${activeTabHeight}px`
+  }, 300)
+  const element = document.getElementById("some-element-you-want-to-animate");
+  let start;
+
+  function step(timestamp) {
+    if (start === undefined) {
+      start = timestamp;
+    }
+    const elapsed = timestamp - start;
+
+    // Math.min() is used here to make sure the element stops at exactly 200px
+    const shift = Math.min(0.1 * elapsed, 200);
+    element.style.transform = `translateX(${shift}px)`;
+    if (shift < 200) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+})
+
+onUnmounted(() => {
+  if (timeoutId) {
+    clearTimeout(timeoutId)
+  }
+})
 </script>
 
 <template>
@@ -7,13 +68,13 @@
   <div class="sticky bottom-0 left-0 right-0   p-3 z-10">
     <div
       class="flex justify-between border border-[#333333] rounded-[13px] bg-[#1a1a1a] px-[17px] bottom-navs py-[12px] items-end">
-
+<div id="some-element-you-want-to-animate"></div>
       <router-link :to="{
         name: 'mining',
       }" :class="{
           '_active': $route.name === 'mining',
-       }"
-                   class="w-[57px] h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
+       }" @click="changeActiveTab(1, $event)"
+                   class="navbar-link w-[57px] h-[57px] relative z-[2] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
         <div class="rounded-lg mb-[7px]">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
                xmlns="http://www.w3.org/2000/svg">
@@ -30,14 +91,14 @@
             </defs>
           </svg>
         </div>
-        <span class="text-[10px] text-[#ffffff]">mining</span>
+        <span class="text-[10px] text-[#ffffff]">Майнинг</span>
       </router-link>
       <router-link :to="{
         name: 'friends',
       }" :class="{
           '_active': $route.name === 'friends',
-       }"
-                   class="w-[57px] h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
+       }" @click="changeActiveTab(2, $event)"
+                   class="navbar-link w-[57px] h-[57px] relative z-[2] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
         <div class="rounded-lg mb-[7px]">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
                xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +112,8 @@
       </router-link>
 
       <router-link :to="{name: 'home'}"
-                   class="w-[57px] h-[57px] flex flex-col items-center rounded-xl relative w-[75px]">
+                   @click="changeActiveTab(0, $event)"
+                   class="w-[57px] h-[57px] relative z-[2] flex flex-col items-center rounded-xl relative w-[75px]">
         <div class="absolute p-4 home-route bottom-[-20px]">
           <div class=" w-20 h-20 rounded-xl flex items-center justify-center">
             <img src="@/assets/icons/Purple%20Planet.png" alt="">
@@ -62,11 +124,11 @@
 
 
       <router-link :to="{
-        name: 'shop',
+        name: 'upgrade',
       }" :class="{
-          '_active': $route.name === 'shop',
-       }"
-                   class="w-[57px] h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
+          '_active': $route.name === 'upgrade',
+       }" @click="changeActiveTab(3, $event)"
+                   class="navbar-link w-[57px] h-[57px] relative z-[2] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
         <div class="rounded-lg mb-[7px]">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
                xmlns="http://www.w3.org/2000/svg">
@@ -88,11 +150,11 @@
       </router-link>
 
       <router-link :to="{
-        name: 'airdrops',
+        name: 'mining',
       }" :class="{
-          '_active': $route.name === 'airdrops',
-       }"
-                   class="w-[57px] relative h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
+          '_active': $route.name === 'mining',
+       }" @click="changeActiveTab(4, $event)"
+                   class="navbar-link w-[57px] relative z-[2] h-[57px] rounded-[13px]  flex flex-col justify-center gap-[7px] items-center">
         <div
           class="absolute top-[-21px] left-0 right-0 bg-[#ff282c] text-[9px] text-[normal] px-[4px] py-[2px] text-white text-center rounded-md font-mono">
           10:24:46
@@ -117,6 +179,8 @@
         </div>
         <span class="text-[10px] text-[#ffffff]">Эйрдроп</span>
       </router-link>
+      <div class="active-tab-bg" ref="activeTabBg"/>
+
     </div>
   </div>
 </template>
@@ -138,11 +202,37 @@
   height: min-content;
 }
 
-._active {
-  background: linear-gradient(180deg, #9D56F4 0%, #5B328E 100%);
-  border: 1px solid ;
-  border-image-source: linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0) 100%);
-  box-shadow: 0px 4px 29.2px 0px rgba(157, 86, 244, 0.31);
+//._active {
+//  background: linear-gradient(180deg, #9D56F4 0%, #5B328E 100%);
+//  border: 1px solid ;
+//  border-image-source: linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0) 100%);
+//  box-shadow: 0px 4px 29.2px 0px rgba(157, 86, 244, 0.31);
+//
+//}
 
+.active-tab-bg {
+  position: absolute;
+  border: 1px solid rgba(197, 158, 245, 1);
+  box-shadow: 0px 4px 13.9px 0px #FFFFFF40 inset, 0px 4px 29.2px 0px #9D56F44F;
+  border-radius: 9px;
+
+  background: linear-gradient(180deg, #9D56F4 0%, #5B328E 100%);
+  z-index: 1;
+  transition: all 0.3s ease;
+
+  &._main-active {
+    background: linear-gradient(180deg, #DEB058 0%, #A5851E 100%);
+
+    border: 1px solid #D8BC7B;
+    box-shadow: 0px 4px 13.9px 0px #FFFFFF40 inset;
+
+    box-shadow: 0px 4px 29.2px 0px #DEB0584F;
+
+    color: #ffffff;
+  }
+
+  &._hide {
+    opacity: 0;
+  }
 }
 </style>

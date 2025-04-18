@@ -1,11 +1,18 @@
 <script setup lang="ts">
-
+defineProps({
+  stop: {
+    type: Boolean,
+    default: false
+  }
+})
 </script>
 
 <template>
-  <div class="w-full !mt-[12px] h-3 bg-[#323232] rounded-[3px]  overflow-hidden">
+  <div  class="w-full !mt-[12px] h-3 bg-[#323232] rounded-[3px]  overflow-hidden">
     <div class="loader-wrapper rounded-[3px] overflow-hidden">
-      <div class="loader"></div>
+      <div class="loader" :class="{
+    'stop': stop,
+  }"></div>
     </div>
   </div>
 </template>
@@ -22,6 +29,9 @@
   height: 14px;
   background: repeating-linear-gradient(-45deg, #9d56f4 0 10px, #f456f2 0 20px) left/200% 100%;
   animation: l3 2s infinite linear;
+}
+.loader.stop {
+ animation: unset;
 }
 
 @keyframes l3 {

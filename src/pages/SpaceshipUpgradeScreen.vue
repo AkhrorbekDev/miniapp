@@ -1,13 +1,44 @@
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import UpgradePartBottomSheet from "@/components/UpgradePartBottomSheet.vue";
 
-const activeTabIndex = ref(4);
+const activeTabIndex = ref(1);
 const showBottomSheet = ref(false);
+const activeTabBg = ref(null)
 
 const openBottomSheet = () => {
   showBottomSheet.value = true;
 };
+const changeActiveTab = (index, e) => {
+  activeTabIndex.value = index
+  const activeTab = document.querySelectorAll('.upgrade-types__type')[index - 1]
+  const activeTabWidth = activeTab.offsetWidth
+  const activeTabLeft = activeTab.offsetLeft
+  const activeTabTop = activeTab.offsetTop
+  const activeTabHeight = activeTab.offsetHeight
+
+  activeTabBg.value.style.width = `${activeTabWidth}px`
+  activeTabBg.value.style.left = `${activeTabLeft}px`
+  activeTabBg.value.style.top = `${activeTabTop}px`
+  activeTabBg.value.style.height = `${activeTabHeight}px`
+  if (index === 4) {
+    activeTabBg.value.classList.add('_main-active')
+  } else {
+    activeTabBg.value.classList.remove('_main-active')
+  }
+}
+onMounted(() => {
+  const activeTab = document.querySelector('.upgrade-types__type._active')
+  const activeTabWidth = activeTab.offsetWidth
+  const activeTabLeft = activeTab.offsetLeft
+  const activeTabTop = activeTab.offsetTop
+  const activeTabHeight = activeTab.offsetHeight
+
+  activeTabBg.value.style.width = `${activeTabWidth}px`
+  activeTabBg.value.style.left = `${activeTabLeft}px`
+  activeTabBg.value.style.top = `${activeTabTop}px`
+  activeTabBg.value.style.height = `${activeTabHeight}px`
+})
 </script>
 <template>
   <div class="min-h-screen bg-black text-white sticky top-0 overflow-hidden upgrade-page">
@@ -38,23 +69,24 @@ const openBottomSheet = () => {
 
       <!-- Navigation tabs -->
       <div class="upgrade-types">
-        <button @click="activeTabIndex = 1" :class="{_active: activeTabIndex === 1}"
+        <button @click="changeActiveTab(1, $event)" :class="{_active: activeTabIndex === 1}"
                 class=" upgrade-types__type flex-1 rounded-full text-white font-medium">
           Добыча
         </button>
-        <button @click="activeTabIndex = 2" :class="{_active: activeTabIndex === 2}"
+        <button @click="changeActiveTab(2, $event)" :class="{_active: activeTabIndex === 2}"
                 class=" upgrade-types__type flex-1 text-white font-medium">
           Броня
         </button>
-        <button @click="activeTabIndex = 3" :class="{_active: activeTabIndex === 3}"
+        <button @click="changeActiveTab(3, $event)" :class="{_active: activeTabIndex === 3}"
                 class=" upgrade-types__type flex-1 text-white font-medium">
           Двигатель
         </button>
-        <button @click="activeTabIndex = 4"
+        <button @click="changeActiveTab(4, $event)"
                 :class="{_active: activeTabIndex === 4, '_main-active': activeTabIndex === 4}"
                 class=" upgrade-types__type flex-1 text-white font-medium text-yellow-500">
           Особое
         </button>
+        <div class="active-tab-bg" ref="activeTabBg"/>
       </div>
 
       <!-- Upgrade cards grid -->
@@ -258,6 +290,14 @@ const openBottomSheet = () => {
   background-size: contain;
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
 .upgrade-types {
   border: 1px solid #222222;
   padding: 7px 13px;
@@ -281,25 +321,35 @@ const openBottomSheet = () => {
     font-size: 12px;
     line-height: 100%;
     letter-spacing: 0%;
+    position: relative;
+    z-index: 2;
 
-
-    &._active {
-      border: 1px solid rgba(197, 158, 245, 1);
-      box-shadow: 0px 4px 13.9px 0px rgba(255, 255, 255, 0.25) inset;
-      background: linear-gradient(180deg, #9D56F4 0%, #5B328E 100%);
-      box-shadow: 0px 4px 29.2px 0px rgba(157, 86, 244, 0.31);
-    }
 
     &._main-active {
-      background: linear-gradient(180deg, #DEB058 0%, #A5851E 100%);
-
-      border: 1px solid #D8BC7B;
-      box-shadow: 0px 4px 13.9px 0px #FFFFFF40 inset;
-
-      box-shadow: 0px 4px 29.2px 0px #DEB0584F;
-
       color: #ffffff;
     }
+  }
+}
+
+.active-tab-bg {
+  position: absolute;
+  border: 1px solid rgba(197, 158, 245, 1);
+  box-shadow: 0px 4px 13.9px 0px #FFFFFF40 inset, 0px 4px 29.2px 0px #9D56F44F;
+  border-radius: 9px;
+
+  background: linear-gradient(180deg, #9D56F4 0%, #5B328E 100%);
+  z-index: 1;
+  transition: all 0.3s ease;
+
+  &._main-active {
+    background: linear-gradient(180deg, #DEB058 0%, #A5851E 100%);
+
+    border: 1px solid #D8BC7B;
+    box-shadow: 0px 4px 13.9px 0px #FFFFFF40 inset;
+
+    box-shadow: 0px 4px 29.2px 0px #DEB0584F;
+
+    color: #ffffff;
   }
 }
 

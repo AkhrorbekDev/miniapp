@@ -6,12 +6,27 @@ import BottomNav from "@/components/BottomNav.vue";
 import {ref} from 'vue'
 
 const showResult = ref(true)
+const count = ref(0)
+const onTap = (e) => {
+  // animation trigger
+  const el = e.currentTarget;
+  el.classList.remove('tapped');
+  void el.offsetWidth; // Force reflow
+  el.classList.add('tapped');
+
+  count.value += 1
+
+  if (count.value === 5) {
+    showResult.value = !showResult.value
+    count.value = 0
+  }
+}
 </script>
 
 <template>
   <div class="w-full min-h-screen flex flex-col justify-between !pt-[17px] home-page">
     <HomeHeader/>
-    <div v-if="!showResult" class="flex flex-col items-center min-w-[386px] min-h-[386px]">
+    <div v-if="showResult" class="flex flex-col items-center min-w-[386px] min-h-[386px]">
       <div class="w-full max-w-[221px]">
         <div class="flex items-center justify-between text-[10px] font-[400] text-[#FFFFFF]">
           <span class="text-[#FFFFFF]">Здоровье планеты</span>
@@ -20,10 +35,10 @@ const showResult = ref(true)
               <span class="text-[11px] font-[400] text-[#FFFFFF38]"> 150,000</span>
             </span>
         </div>
-        <LoaderBar/>
+        <LoaderBar stop/>
 
       </div>
-      <button class="tap-btn" @click="showResult = !showResult">
+      <button class="tap-btn tap-animate" @click="onTap">
         <img src="@/assets/icons/yellowplanet.png" alt="">
       </button>
 
@@ -43,8 +58,8 @@ const showResult = ref(true)
       </div>
       <div class="border-dashed border-[1px] border-[#ffffff23]
       rounded-[13px] h-[43px] w-full max-w-[221px] !mt-[11px] !mb-[9px]
- flex items-center justify-center text-[#7D7D7D] text-[12px]
-">
+       flex items-center justify-center text-[#7D7D7D] text-[12px]
+      ">
         Ваша награда: <span class="text-[#F3BE5C]">30кк монет</span>
       </div>
       <button
@@ -62,18 +77,24 @@ const showResult = ref(true)
     <div>
       <div class="!px-[16px]  flex items-center justify-between !mb-[9px]">
         <div class="flex gap-[7px] items-center">
-          <button
+          <router-link
+            :to="{
+            name: 'fortune-wheel'
+            }"
             class="rounded-[13px] border border-[#ffffff23] overflow-hidden  w-[46px] h-[46px] flex items-center justify-center">
           <span class="calendar-icon purple">
             <img src="@/assets/icons/ruletka.png" alt="">
           </span>
-          </button>
-          <button
+          </router-link>
+          <router-link
+            :to="{
+             name: 'week-calendar',
+            }"
             class="rounded-[13px] border border-[#ffffff23] overflow-hidden  w-[46px] h-[46px] flex items-center justify-center">
           <span class="calendar-icon red">
             <img src="@/assets/icons/calendar%202.png" alt="">
           </span>
-          </button>
+          </router-link>
         </div>
         <div
           class="max-w-[115px]   !px-[12px] !py-[10px] overflow-hidden bg-[#ffffff20] backdrop-blur-sm rounded-[13px] flex flex-col items-center">
@@ -100,8 +121,9 @@ const showResult = ref(true)
           </router-link>
         </div>
       </div>
-      <BottomNav/>
     </div>
+    <BottomNav/>
+
   </div>
 </template>
 
@@ -165,5 +187,22 @@ const showResult = ref(true)
   width: 40px;
   height: 40px;
   background-image: url("@/assets/icons/rest.png");
+}
+
+
+.tap-animate.tapped {
+  animation: tap-bounce 0.25s ease;
+}
+
+@keyframes tap-bounce {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.93);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
